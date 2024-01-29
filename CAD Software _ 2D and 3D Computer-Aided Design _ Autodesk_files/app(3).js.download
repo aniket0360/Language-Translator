@@ -1,0 +1,798 @@
+/******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./scripts/utils.js":
+/*!**************************!*\
+  !*** ./scripts/utils.js ***!
+  \**************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Utils; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+
+class Utils {}
+
+(0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(Utils, "debounce", (callback, delay) => {
+  let timeoutId = null;
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      callback.apply(null, args);
+    }, delay);
+  };
+});
+
+/***/ }),
+
+/***/ "./components/modal/styles.scss":
+/*!**************************************!*\
+  !*** ./components/modal/styles.scss ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ _defineProperty; }
+/* harmony export */ });
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+!function() {
+/*!***********************************!*\
+  !*** ./components/modal/index.js ***!
+  \***********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Modal; }
+/* harmony export */ });
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.scss */ "./components/modal/styles.scss");
+/* harmony import */ var _scripts_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../scripts/utils.js */ "./scripts/utils.js");
+
+
+class Modal extends HTMLElement {
+  constructor() {
+    super();
+    /**
+     * returns an object that maps attribute names to properties
+     * @returns {object} attribute map object
+     */
+
+    function getAttributeMap() {
+      return {
+        'config': 'config'
+      };
+    }
+
+    this.componentId = null;
+    this.componentInitialized = false; //maps attribute names to class properties
+
+    this.attributeMap = getAttributeMap();
+    this.config = {};
+  }
+  /**
+   * Append an array of child elements to an element
+   * @param element {object} DOM element to which to append children
+   * @param children {array} array of DOM elements to append
+   */
+
+
+  static appendChildren(element, children) {
+    children.map(child => {
+      element.appendChild(child);
+    });
+  }
+  /**
+   * Create a DOM element of type.  Adds attributes defined in the config object and optional content
+   * @param type {string} element type
+   * @param config {object} object containing element attribute/value pairs
+   * @param content {string} content of element
+   * @returns {HTMLElement}
+   */
+
+
+  static createElement(type, config) {
+    let content = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+    const el = document.createElement(type);
+    const keys = Object.keys(config);
+    keys.forEach(key => {
+      el.setAttribute(key, config[key]);
+    });
+
+    if (content) {
+      el.innerHTML = content;
+    }
+
+    return el;
+  }
+  /**
+   * Set attributes on a DOM node
+   * @param domElement {Object}
+   * @param config {Object}
+   */
+
+
+  static setAttributes(domElement, config) {
+    Object.keys(config).forEach(key => {
+      domElement.setAttribute(key, config[key]);
+    });
+  }
+  /**
+   * gets value from the local storage
+   * @param key {string}
+   * @returns {string}
+   */
+
+
+  static getFromLocalStorage(key) {
+    let val = '';
+
+    try {
+      val = localStorage.getItem(key);
+    } catch (err) {
+      console.error('Error on getting value from local storage', err);
+    }
+
+    return val;
+  }
+  /**
+   * this sets up the attributes that when changed will trigger attributeChangedCallback
+   * @returns {string[]}
+   */
+
+
+  get observedAttributes() {
+    return Object.keys(this.attributeMap);
+  }
+  /**
+   * set the config object
+   * @param config {object}
+   */
+
+
+  setConfig() {
+    const config = this.getAttribute('config');
+    let attributeConfig = null;
+
+    if (config) {
+      attributeConfig = JSON.parse(config);
+    } // default config
+
+
+    const defaultConfig = {
+      closeButtonDisplay: true,
+      closeButtonOutside: false,
+      disableClickOutsideClose: false,
+      displayLogo: false,
+      maxWidth: false,
+      styleVariant: 'default',
+      type: 'modal',
+      describedBy: 'Modal description',
+      labelledBy: 'Modal label',
+      title: 'Modal Title',
+      ctaButtonText: 'Primary',
+      ctaButtonHref: '',
+      secondaryButtonText: 'Secondary',
+      secondaryButtonHref: '',
+      content: 'This is the <strong>content</strong> of the modal',
+      iconName: 'alert',
+      alt: ''
+    };
+
+    if (attributeConfig) {
+      this.config = Object.assign({}, defaultConfig, attributeConfig);
+    } else {
+      this.config = defaultConfig;
+    }
+  }
+  /**
+   * Set the callback function on a button click
+   * @param type {string} either 'cta' or anything else
+   * @param callback {function} callback function called on button click
+   */
+
+
+  setButtonAction(type, callback) {
+    if (typeof callback !== 'function') {
+      console.error('setCtaButtonAction expects a function');
+      return;
+    }
+
+    if (type === 'cta') {
+      this.ctaButtonAction = callback;
+    } else {
+      this.secondaryButtonAction = callback;
+    }
+  }
+  /**
+   * Set the lightbox contents.  If contents is a DOM element add that
+   * directly.  Otherwise create a span and add the contents to that.
+   * @param contents
+   */
+
+
+  setLightboxContents(contents) {
+    if (contents.nodeName) {
+      this.lightboxContents = contents;
+    } else {
+      const bodySpan = Modal.createElement('span', {
+        class: 'dhig-typography-body-copy-medium'
+      }, contents);
+      this.lightboxContents = bodySpan;
+    }
+  }
+  /**
+   * handle closing modal when clicking off of the modal window
+   * @param event
+   */
+
+
+  clickOff(event) {
+    if (event.target.classList.contains('MuiDialog-scrollPaper')) {
+      this.closeModal();
+    }
+  }
+  /**
+   * close the interstitial popup
+   * @returns {boolean} - returns true to keep transpiler happy
+   */
+
+
+  closeModal() {
+    this.destroyDOM();
+  }
+  /**
+   * open the modal
+   * @returns {boolean} - returns true to keep transpiler happy
+   */
+
+
+  openModal() {
+    this.createDOM();
+  }
+  /**
+   * Create the modal header
+   */
+
+
+  createHeader() {
+    switch (this.config.type) {
+      case 'modal':
+        let modalTitle;
+        let headerImage = null;
+        modalTitle = Modal.createElement('div', {
+          class: 'MuiDialogTitle-root DhigModal--styleVariant--' + this.config.styleVariant + ' DhigModal--type-' + this.config.type
+        }, !this.config.displayLogo ? this.config.title : '');
+
+        if (this.config.displayLogo) {
+          headerImage = Modal.createElement('img', {
+            class: 'DhigModal--logo',
+            src: 'https://swc.autodesk.com/pharmacopeia/svg/logo/v0/logo.svg',
+            alt: 'Autodesk logo'
+          });
+          modalTitle.appendChild(headerImage);
+        }
+
+        this.modalElements.push(modalTitle);
+        break;
+
+      case 'alert':
+        break;
+
+      case 'lightbox':
+        break;
+    }
+  }
+  /**
+   * Create the close buton
+   */
+
+
+  createCloseButton() {
+    if (this.config.closeButtonDisplay) {
+      const closeValue = this.config.closeButtonOutside ? 'outside' : 'default';
+      this.closeButton = Modal.createElement('button', {
+        class: 'MuiButtonBase-root MuiIconButton-root DhigModal--closeButton--' + closeValue,
+        tabindex: '0',
+        type: 'button',
+        'aria-label': 'close'
+      });
+      const closeButtonSpan = Modal.createElement('span', {
+        class: 'MuiIconButton-label'
+      });
+      const closeButtonSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      closeButtonSvg.setAttribute('class', 'MuiSvgIcon-root DhigSvgIcon DhigSvgIcon--size--inherit');
+      closeButtonSvg.setAttribute('focusable', 'false');
+      closeButtonSvg.setAttribute('viewBox', '0 0 24 24');
+      closeButtonSvg.setAttribute('aria-hidden', 'true');
+      const closeButtonSvgUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      closeButtonSvgUse.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#dhig--icons--utility--cross');
+      closeButtonSvgUse.setAttribute('class', 'dhig--icons--utility--cross');
+      closeButtonSvg.appendChild(closeButtonSvgUse);
+      closeButtonSpan.appendChild(closeButtonSvg);
+      this.closeButton.appendChild(closeButtonSpan);
+      this.modalElements.push(this.closeButton);
+    }
+  }
+  /**
+   * Create the alert icon if type is alert.
+   * This uses the iconName configuration to choose the icon
+   */
+
+
+  createAlertIcon() {
+    if (this.config.type !== 'alert') {
+      return;
+    }
+
+    const alertImage = Modal.createElement('img', {
+      class: 'DhigModal--alertIcon',
+      src: 'https://swc.autodesk.com/pharmacopeia/svg/icons/v0/display-icons/' + this.config.iconName + '.svg',
+      alt: this.config.iconName + ' icon'
+    });
+    const alertHeading = Modal.createElement('div', {
+      class: 'dhig-typography-headline-small dhig-mb-2'
+    }, this.config.title);
+    this.bodyElements.push(alertImage);
+    this.bodyElements.push(alertHeading);
+  }
+  /**
+   * Creates the lightbox contents based on config properties
+   */
+
+
+  createLightboxContents() {
+    if (this.config.type !== 'lightbox') {
+      return;
+    }
+
+    const sources = [];
+
+    if (this.config.imagePath) {
+      const image = Modal.createElement('img', {
+        src: this.config.imagePath
+      });
+      this.config.alt ? image.alt = this.config.alt : '';
+      this.setLightboxContents(image);
+    } else if (this.config.mp4Path || this.config.webmPath) {
+      const video = Modal.createElement('video', {
+        controls: true
+      });
+      this.config.autoplay ? video.autoplay = true : '';
+
+      if (this.config.mp4Path) {
+        const mp4Source = Modal.createElement('source', {
+          src: this.config.mp4Path,
+          type: 'video/mp4'
+        });
+        sources.push(mp4Source);
+      }
+
+      if (this.config.webmPath) {
+        const mp4Source = Modal.createElement('source', {
+          src: this.config.webmPath,
+          type: 'video/webm'
+        });
+        sources.push(mp4Source);
+      }
+
+      Modal.appendChildren(video, sources);
+      this.setLightboxContents(video);
+    }
+  }
+  /**
+   * Create the button panel and buttons
+   */
+
+
+  createButtonPanel() {
+    if (this.config.type === 'lightbox') {
+      return;
+    }
+
+    const buttons = [];
+    let buttonConfig;
+
+    if (this.config.secondaryButtonText) {
+      buttonConfig = {
+        class: 'MuiButtonBase-root MuiButton-root MuiButton-text',
+        tabindex: '0',
+        type: 'button'
+      };
+
+      if (this.config.secondaryButtonHref) {
+        buttonConfig.href = this.config.secondaryButtonHref;
+      }
+
+      this.secondaryButton = Modal.createElement(this.config.secondaryButtonHref ? 'a' : 'button', buttonConfig);
+
+      if (this.secondaryButtonAction) {
+        this.secondaryButton.addEventListener('click', () => this.secondaryButtonAction());
+      }
+
+      const secondaryButtonSpan = Modal.createElement('span', {
+        class: "MuiButton-label"
+      }, this.config.secondaryButtonText);
+      this.secondaryButton.appendChild(secondaryButtonSpan);
+      buttons.push(this.secondaryButton);
+    }
+
+    if (this.config.ctaButtonText) {
+      buttonConfig = {
+        class: 'MuiButtonBase-root MuiButton-root MuiButton-contained',
+        tabindex: '0',
+        type: 'button'
+      };
+
+      if (this.config.ctaButtonHref) {
+        buttonConfig.href = this.config.ctaButtonHref;
+      } else {
+        delete buttonConfig.href;
+      }
+
+      this.ctaButton = Modal.createElement(this.config.ctaButtonHref ? 'a' : 'button', buttonConfig);
+
+      if (this.ctaButtonAction) {
+        this.ctaButton.addEventListener('click', () => this.ctaButtonAction());
+      }
+
+      const ctaButtonSpan = Modal.createElement('span', {
+        class: "MuiButton-label"
+      }, this.config.ctaButtonText);
+      this.ctaButton.appendChild(ctaButtonSpan);
+      buttons.push(this.ctaButton);
+    }
+
+    if (buttons.length > 0) {
+      const modalActionPanel = Modal.createElement('div', {
+        class: 'MuiDialogActions-root DhigModal--styleVariant--' + this.config.styleVariant + ' DhigModal--type--' + this.config.type + ' MuiDialogActions-spacing'
+      });
+
+      if (buttons.length === 1) {
+        modalActionPanel.appendChild(buttons[0]);
+      } else {
+        const modalActionSpan = Modal.createElement('span', {
+          class: 'dhig-mr-5'
+        });
+        Modal.appendChildren(modalActionSpan, [buttons[0]]);
+        modalActionPanel.appendChild(modalActionSpan);
+        Modal.appendChildren(modalActionPanel, [modalActionSpan, buttons[1]]);
+      }
+
+      this.modalElements.push(modalActionPanel);
+    }
+  }
+  /**
+   * Calculate a width that allows for the largest image while ensuring the entirety of the image is visible
+   */
+
+
+  calculateWidthForWindow(width, height) {
+    let widthRatio = (window.innerWidth - 64) / width;
+    let heightRatio = (window.innerHeight - 64) / height;
+    return Math.floor(width * (widthRatio < heightRatio ? widthRatio : heightRatio));
+  }
+  /**
+   * set properties and set up intial DOM elements
+   */
+
+
+  createDOM() {
+    let width;
+    let customWidth = null;
+    let customWidthStyle = '';
+    this.destroyDOM();
+    this.modalElements = [];
+    this.bodyElements = [];
+
+    if (this.config.maxWidth) {
+      //convert to title case if lower case
+      width = this.config.maxWidth.split('').map((el, index) => index === 0 ? el.toUpperCase() : el).join('');
+    } else {
+      width = 'False';
+
+      if (this.config.width && this.config.height) {
+        customWidth = this.calculateWidthForWindow(this.config.width, this.config.height);
+        customWidthStyle = 'max-width: ' + customWidth + 'px';
+      }
+    }
+
+    const widthClass = 'MuiDialog-paperWidth' + width;
+    this.themeWrapper = Modal.createElement('div', {
+      class: this.config.dhigTheme ? this.config.dhigTheme : 'dhig-theme--light'
+    });
+    this.modal = Modal.createElement('div', {
+      role: 'presentation',
+      class: 'MuiDialog-root'
+    });
+    const backdropRoot = Modal.createElement('div', {
+      class: 'MuiBackdrop-root DhigModal--backdrop--default',
+      'aria-hidden': 'true'
+    });
+    const sentinelStart = Modal.createElement('div', {
+      tabindex: '0',
+      'data-test': 'sentinelStart'
+    });
+    const modalContainer = Modal.createElement('div', {
+      class: 'MuiDialog-container MuiDialog-scrollPaper',
+      role: 'none presentation',
+      tabindex: '-1'
+    });
+    const modalWindow = Modal.createElement('div', {
+      class: 'MuiPaper-root DhigModal--styleVariant--' + this.config.styleVariant + ' DhigModal--type--' + this.config.type + ' MuiDialog-paper MuiDialog-paperScrollPaper ' + widthClass + ' MuiPaper-elevation24 MuiPaper-rounded',
+      style: customWidthStyle,
+      role: 'dialog',
+      'aria-describedby': this.config.describedBy,
+      'aria-labelledby': this.config.labelledBy
+    });
+    this.createCloseButton();
+    this.createHeader();
+    this.modalBody = Modal.createElement('div', {
+      class: 'MuiDialogContent-root DhigModal--styleVariant--' + this.config.styleVariant + ' DhigModal--type--' + this.config.type
+    });
+    this.createAlertIcon();
+    this.createLightboxContents();
+    let modalBodyContent = null;
+
+    if (this.config.type === 'lightbox') {
+      modalBodyContent = this.lightboxContents || '';
+    } else {
+      modalBodyContent = Modal.createElement('span', {
+        class: 'dhig-typography-body-copy-medium'
+      }, this.config.content.replace(/(\\r\\n|\\n|\\r)/g, '')); //remove line breaks and carriage returns
+    }
+
+    this.bodyElements.push(modalBodyContent);
+    Modal.appendChildren(this.modalBody, this.bodyElements);
+    this.modalElements.push(this.modalBody);
+    this.createButtonPanel();
+    const sentinelEnd = Modal.createElement('div', {
+      tabindex: '0',
+      'data-test': 'sentinelEnd'
+    });
+    Modal.appendChildren(modalWindow, this.modalElements);
+    Modal.appendChildren(modalContainer, [modalWindow]);
+    Modal.appendChildren(this.modal, [backdropRoot, sentinelStart, modalContainer, sentinelEnd]);
+    this.themeWrapper.appendChild(this.modal);
+    this.appendChild(this.themeWrapper);
+
+    if (this.config.width && this.config.height) {
+      const setModalWindowMaxWidth = _scripts_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].debounce(() => modalWindow.style.maxWidth = customWidth + 'px', 100);
+      addEventListener('resize', event => {
+        customWidth = this.calculateWidthForWindow(this.config.width, this.config.height);
+        setModalWindowMaxWidth();
+      });
+    }
+
+    if (this.closeButton) {
+      this.closeButton.addEventListener('click', this.closeModalBind);
+    }
+
+    if (!this.config.disableClickOutsideClose) {
+      this.modal.addEventListener('click', event => {
+        this.clickOff(event);
+      });
+    }
+  }
+  /**
+   * Destroy the modal HTML
+   */
+
+
+  destroyDOM() {
+    if (this.children.length > 0) {
+      this.removeChild(this.themeWrapper);
+      this.themeWrapper = null;
+      this.modal = null;
+    }
+  }
+  /**
+   * Cast modal as lightbox
+   * @param path {string} path to either image or video
+   * @param options {object} options for method
+   */
+
+
+  castAsLightbox(path, options) {
+    this.config.type = 'lightbox';
+    this.config.maxWidth = false;
+    this.config.closeButtonOutside = true;
+    this.config.closeButtonDisplay = true;
+    this.config.autoplay = (options === null || options === void 0 ? void 0 : options.autoplay) || false;
+    this.config.height = (options === null || options === void 0 ? void 0 : options.height) || null;
+    this.config.width = (options === null || options === void 0 ? void 0 : options.width) || null;
+    this.config.alt = (options === null || options === void 0 ? void 0 : options.alt) || null;
+
+    if (!path) {
+      return;
+    } // Reset the config paths
+
+
+    this.config.mp4Path = '';
+    this.config.webmPath = '';
+    this.config.imagePath = '';
+
+    switch (true) {
+      case /mp4$/.test(path):
+        this.config.mp4Path = path;
+        break;
+
+      case /webm$/.test(path):
+        this.config.webmPath = path;
+        break;
+
+      case /(jpg|jpeg|gif|png|webp|avif)$/.test(path):
+        this.config.imagePath = path;
+        break;
+    }
+  }
+  /**
+   * Cast modal as a modal
+   */
+
+
+  castAsModal() {
+    this.config.type = 'modal';
+    this.config.maxWidth = 'md';
+    this.config.closeButtonDisplay = true;
+    this.config.closeButtonOutside = false;
+  }
+  /**
+   * Cast modal as alert
+   */
+
+
+  castAsAlert(icon) {
+    this.config.type = 'alert';
+    this.config.maxWidth = 'sm';
+    this.config.closeButtonDisplay = true;
+    this.config.closeButtonOutside = false;
+    icon = icon || 'alert';
+    this.config.iconName = icon;
+  }
+  /**
+   * Update the value for a single config key
+   * @param key
+   * @param value
+   */
+
+
+  updateConfigValue(key, value) {
+    this.config[key] = value;
+    return true;
+  }
+  /**
+   * built in method of custom elements.  fires whenever an attribute defined in observedAttributes changes
+   * @param name {string} the attribute changed
+   * @param oldValue {string} old value
+   * @param newValue {string} new value
+   */
+
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    this[this.attributeMap[name]] = newValue;
+
+    if (this.componentInitialized) {
+      // only fire after connectedCallback has fired
+      this.updateDOM();
+    }
+  }
+
+  /**
+   * built-in method of custom elements.  fires when the element is added to the page
+   */
+  connectedCallback() {
+    //TODO get this from the config once we have a model
+    this.componentId = this.getAttribute('data-id');
+    this.setConfig();
+    this.closeModalBind = this.closeModal.bind(this);
+  }
+  /**
+   * built in method of custom elements.  fires when the element is removed from the page
+   */
+
+
+  disconnectedCallback() {
+    this.innerHTML = '';
+  }
+
+} // define the custom html element
+
+if (window && window.customElements) {
+  window.customElements.define("mfe-modal", Modal);
+}
+}();
+/******/ })()
+;
+//# sourceMappingURL=standard.js.map

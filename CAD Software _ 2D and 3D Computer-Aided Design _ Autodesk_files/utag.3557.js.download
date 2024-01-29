@@ -1,0 +1,27 @@
+//tealium universal tag - utag.3557 ut4.0.202401231957, Copyright 2024 Tealium.com Inc. All Rights Reserved.
+try{(function(id,loader){var u={};utag.o[loader].sender[id]=u;if(utag.ut===undefined){utag.ut={};}
+if(utag.ut.loader===undefined){u.loader=function(o){var b,c,l,a=document;if(o.type==="iframe"){b=a.createElement("iframe");o.attrs=o.attrs||{"height":"1","width":"1","style":"display:none"};for(l in utag.loader.GV(o.attrs)){b.setAttribute(l,o.attrs[l]);}b.setAttribute("src",o.src);}else if(o.type=="img"){utag.DB("Attach img: "+o.src);b=new Image();b.src=o.src;return;}else{b=a.createElement("script");b.language="javascript";b.type="text/javascript";b.async=1;b.charset="utf-8";for(l in utag.loader.GV(o.attrs)){b[l]=o.attrs[l];}b.src=o.src;}if(o.id){b.id=o.id};if(typeof o.cb=="function"){if(b.addEventListener){b.addEventListener("load",function(){o.cb()},false);}else{b.onreadystatechange=function(){if(this.readyState=='complete'||this.readyState=='loaded'){this.onreadystatechange=null;o.cb()}};}}l=o.loc||"head";c=a.getElementsByTagName(l)[0];if(c){utag.DB("Attach to "+l+": "+o.src);if(l=="script"){c.parentNode.insertBefore(b,c);}else{c.appendChild(b)}}}}else{u.loader=utag.ut.loader;}
+u.ev={view:1};u.initialized=false;u.map={"actioniq_url":"script_url"};u.extend=[function(a,b,c,d,e,f,g){if(1){d=b['ut.env'];if(typeof d=='undefined')return;c=[{'prod':'https://damassets.autodesk.net/content/dam/autodesk/javascript/actioniq/analytics112123.js'}];var m=false;for(e=0;e<c.length;e++){for(f in utag.loader.GV(c[e])){g=new RegExp(f,'i');if(g.test(d)){b['actioniq_url']=c[e][f];m=true};};if(m)break};if(!m)b['actioniq_url']='https://damassets.autodesk.net/content/dam/autodesk/javascript/actioniq/analytics-qa.js';}}];u.send=function(a,b){if(u.ev[a]||u.ev.all!==undefined){var c,d,e,f,i;u.data={"script_url":""};for(c=0;c<u.extend.length;c++){try{d=u.extend[c](a,b);if(d==false)return}catch(e){}};for(d in utag.loader.GV(u.map)){if(b[d]!==undefined&&b[d]!==""){e=u.map[d].split(",");for(f=0;f<e.length;f++){u.data[e[f]]=b[d];}}}
+!(function(){var aiq_analytics=(window.aiq_analytics=window.aiq_analytics||[])
+if(!aiq_analytics.initialize)
+if(aiq_analytics.invoked)window.console&&console.error&&console.error('MetaRouter snippet included twice.')
+else{aiq_analytics.invoked=!0
+aiq_analytics.methods=['trackSubmit','trackClick','trackLink','trackForm','pageview','identify','reset','group','track','ready','alias','debug','page','once','off','on','addSourceMiddleware','addIntegrationMiddleware','setAnonymousId','addDestinationMiddleware',]
+aiq_analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments)
+t.unshift(e)
+aiq_analytics.push(t)
+return aiq_analytics}}
+for(var e=0;e<aiq_analytics.methods.length;e++){var key=aiq_analytics.methods[e]
+aiq_analytics[key]=aiq_analytics.factory(key)}
+aiq_analytics.load=function(script_url,e){var t=document.createElement('script')
+t.type='text/javascript'
+t.async=!0
+t.src=script_url||("https:"===document.location.protocol?"https://":"http://")+"damassets.autodesk.net/content/dam/autodesk/javascript/analytics.js"
+document.body.appendChild(t);aiq_analytics._loadOptions=e}
+aiq_analytics.SNIPPET_VERSION='4.13.1'
+aiq_analytics.load(u.data.script_url)
+payloadArray={"adskUser":digitalData.user}
+if(digitalData.products){payloadArray["products"]=digitalData.products}
+if(digitalData.page){payloadArray["adskPage"]=digitalData.page}
+aiq_analytics.page(payloadArray)}})()
+}};utag.o[loader].loader.LOAD(id);})("3557","autodesk.global-sites");}catch(error){utag.DB(error);}
